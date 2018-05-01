@@ -1,29 +1,36 @@
 'use strict';
 
+// main dependencies
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const imdb = require('imdb-api');
-const key = require('./server/keys');
-
+//auth
+const session = require('express-session');
+const passport = require('passport');
 require('dotenv').config();
 
+// dependent data + paths
 const port = process.env.PORT || 8080;
+const routes = require('./server/routes');
 
+// static rendering
 app.use(express.static(__dirname + "/client"));
 app.use("/angular", express.static(__dirname + "/node_modules/angular/"));
 app.use("/angular-route", express.static(__dirname + "/node_modules/angular-route/"));
 
-app.use(bodyParser.urlencoded({ extended: false }));
+// auth middleware
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+}));
+
+require('./server/config/passport-strat.js');
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
-app.get('/movies', (req,res,next)=>{
-  imdb.search({ title: req.query.keyword }, {apiKey: key})
-    .then(movies => res.status(200).json(movies.results));
-});
-
-
-
+app.use(routes);
 
 
 app.listen(port, () => console.log(`Magic on ${port}`));
