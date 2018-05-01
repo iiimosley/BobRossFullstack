@@ -32,3 +32,9 @@ h1{
     position: relative;
     @include boxShadow(2px, 7px, 20px, -1px)
 }
+
+#newUserForm{
+    input {
+        display: block;
+    }
+}

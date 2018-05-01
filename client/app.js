@@ -9,5 +9,9 @@ angular.module('MovieWatchList', ['ngRoute']).config($routeProvider => {
     .when("/movies", {
       templateUrl: "partials/movies.html",
       controller: "MovieCtrl"
+    })
+    .when("/register", {
+      templateUrl: "partials/register.html",
+      controller: "RegisterCtrl"
     });
 });

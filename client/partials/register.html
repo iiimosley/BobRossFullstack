@@ -1,0 +1,12 @@
+<div id="newUserForm">
+  <label for="regUsername">Username</label>
+  <input type="text" ng-model="account.username" id="regUsername"/>
+  <label for="regEmail">Email</label>
+  <input type="text" ng-model="account.email" id="regEmail"/>
+  <label for="regPassword">Password</label>
+  <input type="text" ng-model="account.password" id="regPassword"/>
+  <label for="regPasswordConfirm">Confirm</label>
+  <input type="text" ng-model="account.confirm" id="regPasswordConfirm"/>
+  <button ng-click="submitUser()">Register</button>
+  <p>{{errMsg}}</p>
+</div>

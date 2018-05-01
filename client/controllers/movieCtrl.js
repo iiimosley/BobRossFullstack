@@ -5,8 +5,11 @@ angular.module("MovieWatchList").controller("MovieCtrl", function ($scope, Movie
   $scope.searchForMovies = () =>{
     MovieFactory.searchAPIMovies($scope.keyword)
       .then(movies => {
-        console.log("movies?", movies.data);
-        $scope.movieList = movies.data;
+        const movieList = movies.data.map(movie=>{
+          if (movie.poster === "N/A") movie.poster= "img/no-poster.jpg";
+          return movie;
+        });
+        $scope.movieList = movieList;
       });
   };
 
