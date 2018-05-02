@@ -1,8 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Movie = sequelize.define('Movie', {
-    imdb_id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER,
+    imdb_id: DataTypes.STRING,
     rating: DataTypes.INTEGER
   }, { tableName: "movies", timestamps: false });
   Movie.associate = function(models) {

@@ -13,6 +13,12 @@ angular.module("MovieWatchList").factory("RegisterFactory", ($http) => {
       });
     },
 
+    loginUser(userObj) {
+      return $http.post("/login", userObj).then(user => {
+        currentUser = user.data;
+      });
+    },
+
     getCurrentUser(){
       return currentUser;
     }
